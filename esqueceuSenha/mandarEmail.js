@@ -29,7 +29,7 @@ app.post('/link-recuperacao', (req, res) => {
   codigos[idUser] = token; // Armazena o token associado ao id do usuário
   const mailOptions = {
     from: 'Acolhe Food <misaelcardoso778@gmail.com>',
-    to: 'misaelcardoso775@gmail.com',
+    to: email,
     subject: 'Verificação de Email',
     html: `Olá ${usuario},<br><br> Clique no link para recuperar sua senha: <br><a href="https://acolhefood.free.nf/esqueceuSenha/novaSenha.php?token=${token}&id=${idUser}">Recuperar senha</a>`
   };
@@ -62,3 +62,4 @@ app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
 
 });
+
