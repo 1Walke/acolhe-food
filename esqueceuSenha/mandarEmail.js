@@ -8,7 +8,11 @@ import crypto from 'crypto';
 let codigos = {};
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: 'https://acolhefood.free.nf',
+  methods: ['GET','POST','PUT','DELETE'],
+  allowedHeaders: ['Content-Type']
+}));
 app.use(express.json());
 
 const transporter = nodemailer.createTransport({
@@ -62,4 +66,5 @@ app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
 
 });
+
 
