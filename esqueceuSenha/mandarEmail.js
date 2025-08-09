@@ -31,7 +31,7 @@ app.post('/link-recuperacao', (req, res) => {
     from: 'Acolhe Food <misaelcardoso778@gmail.com>',
     to: 'misaelcardoso775@gmail.com',
     subject: 'Verificação de Email',
-    html: `Olá ${usuario},<br><br> Clique no link para recuperar sua senha: <br><a href="http://localhost/Project/esqueceuSenha/novaSenha.php?token=${token}&id=${idUser}">Recuperar senha</a>`
+    html: `Olá ${usuario},<br><br> Clique no link para recuperar sua senha: <br><a href="https://acolhefood.free.nf/esqueceuSenha/novaSenha.php?token=${token}&id=${idUser}">Recuperar senha</a>`
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
@@ -60,4 +60,5 @@ app.post('/verificar-codigo', (req, res) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
+
 });
