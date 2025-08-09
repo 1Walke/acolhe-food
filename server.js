@@ -25,7 +25,7 @@ app.post('/send-email', (req, res) => {
   codigos[email] = codigo; // Armazena o código associado ao email
   const mailOptions = {
     from: 'Acolhe Food <misaelcardoso778@gmail.com>',
-    to: 'misael.p@aluno.senai.br',
+    to: email,
     subject: 'Verificação de Email',
     text: `Codigo de verificação: ${codigo}`,
   };
@@ -79,5 +79,6 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
 });
+
 
 
