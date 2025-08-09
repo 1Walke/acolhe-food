@@ -227,7 +227,7 @@
 
         console.log("Enviando email para:", email.value);
 
-        fetch('http://localhost:3000/link-recuperacao', {
+        fetch('https://acolhe-food-esqueceusenha.onrender.com/verificar-codigo', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email: email.value, id: dados.id, usuario: dados.usuario })
@@ -245,3 +245,4 @@
 </script>
 </body>
 </html>
+
