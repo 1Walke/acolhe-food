@@ -3,6 +3,7 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
 const crypto = require('crypto');
+import fetch from "node-fetch";
 
 let codigos = {};
 
@@ -51,6 +52,28 @@ app.post('/verificar-codigo', (req, res) => {
     res.send({sucesso: false});
   }
 })
+
+app.post("/registrar", async (req, res) => {
+    try {
+        // Dados recebidos do frontend
+        
+
+        // Requisição ao free.nf (pode precisar ajustar headers se o PHP esperar form-data)
+        const resposta = await fetch("https://acolhefood.free.nf/registrar.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json" // ou application/x-www-form-urlencoded
+            }
+        });
+
+        const texto = await resposta.text();
+        res.send(texto);
+
+    } catch (erro) {
+        console.error("Erro no proxy:", erro);
+        res.status(500).send("Erro ao processar registro");
+    }
+});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
