@@ -5,6 +5,7 @@ import cors from 'cors';
 import crypto from 'crypto';
 import fetch from "node-fetch";
 
+
 let codigos = {};
 
 const app = express();
@@ -14,8 +15,8 @@ app.use(express.json());
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'misaelcardoso778@gmail.com',
-    pass: 'doab aswf nwtp yttw'
+    user: 'acolhefood@gmail.com',
+    pass: 'idcz wwcn uwka ithb'
   }
 });
 
@@ -24,10 +25,10 @@ app.post('/send-email', (req, res) => {
   const codigo = Math.floor(100000 + Math.random() * 900000);
   codigos[email] = codigo; // Armazena o código associado ao email
   const mailOptions = {
-    from: 'Acolhe Food <misaelcardoso778@gmail.com>',
-    to: email,
+    from: 'Acolhe Food <acolhefood@gmail.com>',
+    to: 'misael.p@aluno.senai.br',
     subject: 'Verificação de Email',
-    text: `Codigo de verificação: ${codigo}`,
+    text: `Olá, este é o  código de verificação do seu email: ${codigo}`,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
@@ -79,6 +80,4 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
 });
-
-
 
