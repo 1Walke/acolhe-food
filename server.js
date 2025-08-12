@@ -26,7 +26,7 @@ app.post('/send-email', (req, res) => {
   codigos[email] = codigo; // Armazena o código associado ao email
   const mailOptions = {
     from: 'Acolhe Food <acolhefood@gmail.com>',
-    to: 'misael.p@aluno.senai.br',
+    to: email,
     subject: 'Verificação de Email',
     text: `Olá, este é o  código de verificação do seu email: ${codigo}`,
   };
