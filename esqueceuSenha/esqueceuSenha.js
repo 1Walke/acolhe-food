@@ -15,7 +15,7 @@ function verificarSenha() {
     }
     else{
             console.log("Verificando código:", { token: tokenDaUrl, idUser: idDoUsuario });
-            fetch('https://acolhe-food-esqueceusenha.onrender.com/verificar-codigo', {
+            fetch('verificar-codigo', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ token: tokenDaUrl, idUser: idDoUsuario })
@@ -62,4 +62,5 @@ function mostrarSenha(){
         document.getElementById("mostrarsenha").innerText = "Mostrar";
     }
 };
+
 
