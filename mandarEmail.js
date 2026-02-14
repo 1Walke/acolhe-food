@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: 'misaelcardoso778@gmail.com',
-    pass: 'doab aswf nwtp yttw'
+    pass: ''
   }
 });
 
@@ -58,3 +58,4 @@ app.post('/verificar-codigo', (req, res) => {
 app.listen(3000, () => {
   console.log('Servidor rodando em http://localhost:3000');
 });
+
