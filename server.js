@@ -16,7 +16,7 @@ const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: 'acolhefood@gmail.com',
-    pass: 'idcz wwcn uwka ithb'
+    pass: ''
   }
 });
 
@@ -80,4 +80,5 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
 });
+
 
