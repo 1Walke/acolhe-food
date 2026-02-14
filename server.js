@@ -16,30 +16,44 @@ const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: 'acolhefood@gmail.com',
-    pass: ''
+    pass: 'idcz wwcn uwka ithb'
   }
 });
 
 app.post('/send-email', (req, res) => {
   const email = req.body.email;
+  const mensagem = req.body.mensagem;
+  const usuario = req.body.usuario;
+  const cdg = req.body.cdg;
   const codigo = Math.floor(100000 + Math.random() * 900000);
   codigos[email] = codigo; // Armazena o código associado ao email
-  const mailOptions = {
-    from: 'Acolhe Food <acolhefood@gmail.com>',
-    to: email,
-    subject: 'Verificação de Email',
-    text: `Olá, este é o  código de verificação do seu email: ${codigo}`,
-  };
+  let mailOptions;
 
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.error(error);
-      res.status(500).send('Erro ao enviar o email');
+    if(cdg == "1"){ // lembre-se, fetch envia strings
+        mailOptions = {
+            from: 'Acolhe Food <acolhefood@gmail.com>',
+            to: email,
+            subject: 'Sugestão da aba de receitas',
+            html: `Usuário: ${usuario}<br>Mensagem: ${mensagem}`
+        };
     } else {
-      console.log('Email enviado:', info.response);
-      res.send('Email enviado com sucesso!');
+        mailOptions = {
+            from: 'Acolhe Food <acolhefood@gmail.com>',
+            to: email,
+            subject: 'Verificação de Email',
+            text: `Olá, este é o código de verificação do seu email: ${codigo}`
+        };
     }
-  });
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.error(error);
+            res.status(500).send('Erro ao enviar o email');
+        } else {
+            console.log('Email enviado:', info.response);
+            res.send('Email enviado com sucesso!');
+        }
+    });
 });
 
 app.post('/verificar-codigo', (req, res) => {
@@ -80,5 +94,4 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
 });
-
 

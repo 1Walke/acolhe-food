@@ -1,0 +1,14 @@
+# Ativa o mod_rewrite
+RewriteEngine On
+
+# 🚫 Bloqueia listagem de pastas
+Options -Indexes
+
+# ✅ Remove a extensão .php da URL
+# Exemplo: http://localhost/meusite/sobre → abre sobre.php
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.+)$ $1.php [L]
+
+# ⚠️ Página 404 personalizada (opcional)
+ErrorDocument 404 /meusite/404.php

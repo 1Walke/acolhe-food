@@ -1,11 +1,9 @@
 <?php
-require 'conexao.php';
+include "protect.php";
 
-if (!isset($_SESSION)) {
-    session_start();
-}
 
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -27,14 +25,15 @@ if (!isset($_SESSION)) {
     </div>
     <div class="nav-list">
       <ul>
-        <li class="nav-item"><a href="#sobre" class="nav-link">Sobre</a></li>
-        <li class="nav-item"><a href="#dicas" class="nav-link">Dicas</a></li>
-        <li class="nav-item"><a href="#contato" class="nav-link">Contato</a></li>
-        <li class="nav-item"><a href="planos/planos.php" class="nav-link">Planos de Assinatura</a></li>
+        <li class="nav-item"><a href="minhaConta/minhaConta.php" class="nav-link">Minha Conta</a></li>
+                    <li class="nav-item"><a href="minhaConta/receitas/minhaAssinatura.php" class="nav-link">Minha Assinatura</a></li>
+                    <li class="nav-item"><a href="planos/planos.php" class="nav-link" id="planosAss">Planos de Assinatura</a></li>
+                    <?php echo $_SESSION['admin'] >= 1 ?  '<li class="nav-item"><a href="admin/postarReceita.php" class="nav-link">Gerenciar Receitas</a></li>' : ""; ?>
+                    <li class="nav-item"><a href="logout.php" class="nav-link">Sair</a></li>
       </ul>
     </div>
     <div class="login-button">
-      <button><a href="login.php">Login</a></button>
+      <button><a href="minhaConta/minhaConta.php"><?php echo $_SESSION['nome'] ?></a></button>
     </div>
     <div class="mobile-menu-icon">
       <button onclick="menuShow()"><img class="icon" src="menu_white_36dp.svg" alt="menu"></button>
@@ -42,10 +41,13 @@ if (!isset($_SESSION)) {
   </nav>
   <div class="mobile-menu">
     <ul>
-      <li class="nav-item"><a href="planos/planos.php" class="nav-link">Planos de Assinatura</a></li>
+      <li class="nav-item"><a href="minhaConta/minhaConta.php" class="nav-link">Minha Conta</a></li>
+                    <li class="nav-item"><a href="" class="nav-link">Minha Assinatura</a></li>
+                    <li class="nav-item"><a href="planos/planos.php" class="nav-link" id="planosAss">Planos de Assinatura</a></li>
+                    <li class="nav-item"><a href="logout.php" class="nav-link">Sair</a></li>
     </ul>
     <div class="login-button">
-      <button><a href="login.php">Login</a></button>
+      <button><a href="minhaConta/minhaConta.php"><?php echo $_SESSION['nome'] ?></a></button>
     </div>
   </div>
 </header>
@@ -136,7 +138,15 @@ if (!isset($_SESSION)) {
     <img id="simboloInsta" src="simbolo_insta.png" alt="Instagram Acolhe Food">
   </a>
 </footer>
+<?php
 
+if($_GET["vl"] == 1){
+  echo "<script>
+  document.querySelector('#planosAss').style.display = 'none';
+  </script>";
+}
+
+?>
 <!-- Swiper JS -->
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
@@ -175,5 +185,3 @@ if (!isset($_SESSION)) {
 
 </body>
 </html>
-
-
